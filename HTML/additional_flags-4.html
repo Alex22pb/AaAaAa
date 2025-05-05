@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandeiras Adicionais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .flags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .flag-box {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .flag-name {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .flag {
+            width: 100%;
+            height: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            position: relative;
+        }
+        
+        .placeholder-icon {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        /* Brasil */
+        .brazil {
+            background-color: #009C3B;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .brazil .diamond {
+            width: 70%;
+            height: 50%;
+            background-color: #FFDF00;
+            transform: rotate(45deg);
+        }
+        
+        .brazil .circle {
+            position: absolute;
+            width: 35%;
+            height: 35%;
+            background-color: #002776;
+            border-radius: 50%;
+        }
+        
+        .brazil .placeholder-text {
+            position: absolute;
+            color: #fff;
+            font-size: 12px;
+        }
+        
+        /* Argentina */
+        .argentina {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .argentina div {
+            flex: 1;
+        }
+        
+        .argentina .sky-blue {
+            background-color: #75AADB;
+        }
+        
+        .argentina .white {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Japão */
+        .japan {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .japan .sun {
+            width: 30%;
+            height: 60%;
+            background-color: #BC002D;
+            border-radius: 50%;
+        }
+        
+        /* China */
+        .china {
+            background-color: #DE2910;
+            position: relative;
+        }
+        
+        .china .star-big {
+            position: absolute;
+            width: 15%;
+            height: 15%;
+            background-color: #FFDE00;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 25px;
+            left: 25px;
+        }
+        
+        .china .star-small-1 {
+            position: absolute;
+            width: 5%;
+            height: 5%;
+            background-color: #FFDE00;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 20px;
+            left: 80px;
+        }
+        
+        .china .star-small-2 {
+            position: absolute;
+            width: 5%;
+            height: 5%;
+            background-color: #FFDE00;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 40px;
+            left: 100px;
+        }
+        
+        .china .star-small-3 {
+            position: absolute;
+            width: 5%;
+            height: 5%;
+            background-color: #FFDE00;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 60px;
+            left: 80px;
+        }
+        
+        .china .star-small-4 {
+            position: absolute;
+            width: 5%;
+            height: 5%;
+            background-color: #FFDE00;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 60px;
+            left: 60px;
+        }
+        
+        /* Índia */
+        .india {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .india div {
+            flex: 1;
+        }
+        
+        .india .saffron {
+            background-color: #FF9933;
+        }
+        
+        .india .white {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .india .green {
+            background-color: #138808;
+        }
+        
+        .india .wheel {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #000080;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .india .wheel::before {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background-color: #000080;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .india .wheel::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #000080;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Austrália */
+        .australia {
+            background-color: #00008B;
+            position: relative;
+        }
+        
+        .australia .uk-flag {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 0;
+            left: 0;
+            background-color: #00008B;
+        }
+        
+        .australia .uk-flag::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            background-color: #FFFFFF;
+            top: 40%;
+        }
+        
+        .australia .uk-flag::after {
+            content: "";
+            position: absolute;
+            width: 20%;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 40%;
+        }
+        
+        .australia .star-large {
+            position: absolute;
+            width: 15%;
+            height: 15%;
+            background-color: #FFFFFF;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            bottom: 20px;
+            left: 150px;
+        }
+        
+        .australia .star-small-1 {
+            position: absolute;
+            width: 8%;
+            height: 8%;
+            background-color: #FFFFFF;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            bottom: 60px;
+            right: 30px;
+        }
+        
+        /* África do Sul */
+        .south-africa {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .south-africa .red {
+            position: absolute;
+            width: 100%;
+            height: 33.33%;
+            background-color: #E03C31;
+            top: 0;
+        }
+        
+        .south-africa .blue {
+            position: absolute;
+            width: 100%;
+            height: 33.33%;
+            background-color: #001489;
+            bottom: 0;
+        }
+        
+        .south-africa .green-triangle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 50%, 33.33% 0, 33.33% 100%);
+            background-color: #007749;
+        }
+        
+        .south-africa .white-bars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .south-africa .white-top {
+            position: absolute;
+            width: 100%;
+            height: 22.22%;
+            background-color: #FFFFFF;
+            top: 33.33%;
+        }
+        
+        .south-africa .yellow-triangle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 50%, 44.44% 20%, 44.44% 80%);
+            background-color: #FFB81C;
+        }
+        
+        .south-africa .black-triangle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 50%, 38.88% 27.77%, 38.88% 72.22%);
+            background-color: #000000;
+        }
+        
+        /* Rússia */
+        .russia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .russia div {
+            flex: 1;
+        }
+        
+        .russia .white {
+            background-color: #FFFFFF;
+        }
+        
+        .russia .blue {
+            background-color: #0039A6;
+        }
+        
+        .russia .red {
+            background-color: #D52B1E;
+        }
+        
+        /* México */
+        .mexico {
+            display: flex;
+        }
+        
+        .mexico div {
+            flex: 1;
+        }
+        
+        .mexico .green {
+            background-color: #006847;
+        }
+        
+        .mexico .white {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mexico .red {
+            background-color: #CE1126;
+        }
+        
+        /* Egito */
+        .egypt {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .egypt div {
+            flex: 1;
+        }
+        
+        .egypt .red {
+            background-color: #CE1126;
+        }
+        
+        .egypt .white {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .egypt .black {
+            background-color: #000000;
+        }
+        
+        /* Arábia Saudita */
+        .saudi-arabia {
+            background-color: #006C35;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .saudi-arabia .text {
+            color: #FFFFFF;
+            font-size: 16px;
+        }
+        
+        /* Coréia do Sul */
+        .south-korea {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .south-korea .yin-yang {
+            width: 30%;
+            height: 60%;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #C60C30 0%, #C60C30 50%, #003478 50%, #003478 100%);
+            position: relative;
+        }
+        
+        .south-korea .yin-yang::before {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            background-color: #C60C30;
+            bottom: 0;
+            left: 50%;
+        }
+        
+        .south-korea .yin-yang::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            background-color: #003478;
+            top: 0;
+            right: 50%;
+        }
+        
+        .south-korea .trigram-1 {
+            position: absolute;
+            width: 15%;
+            height: 5%;
+            background-color: #000000;
+            top: 60px;
+            right: 60px;
+        }
+        
+        .south-korea .trigram-2 {
+            position: absolute;
+            width: 15%;
+            height: 5%;
+            background-color: #000000;
+            top: 80px;
+            right: 60px;
+        }
+        
+        /* Colômbia */
+        .colombia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .colombia .yellow {
+            flex: 2;
+            background-color: #FCD116;
+        }
+        
+        .colombia .blue {
+            flex: 1;
+            background-color: #003893;
+        }
+        
+        .colombia .red {
+            flex: 1;
+            background-color: #CE1126;
+        }
+        
+        /* Nova Zelândia */
+        .new-zealand {
+            background-color: #00247D;
+            position: relative;
+        }
+        
+        .new-zealand .uk-flag {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            top: 0;
+            left: 0;
+            background-color: #00247D;
+        }
+        
+        .new-zealand .uk-flag::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            background-color: #FFFFFF;
+            top: 40%;
+        }
+        
+        .new-zealand .uk-flag::after {
+            content: "";
+            position: absolute;
+            width: 20%;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 40%;
+        }
+        
+        .new-zealand .star {
+            position: absolute;
+            width: 8%;
+            height: 8%;
+            background-color: #FFFFFF;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        
+        .new-zealand .star-1 {
+            bottom: 60px;
+            right: 60px;
+        }
+        
+        .new-zealand .star-2 {
+            bottom: 120px;
+            right: 100px;
+        }
+        
+        .new-zealand .star-3 {
+            bottom: 60px;
+            right: 140px;
+        }
+        
+        .new-zealand .star-4 {
+            bottom: 20px;
+            right: 100px;
+        }
+        
+        /* Indonésia */
+        .indonesia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .indonesia div {
+            flex: 1;
+        }
+        
+        .indonesia .red {
+            background-color: #FF0000;
+        }
+        
+        .indonesia .white {
+            background-color: #FFFFFF;
+        }
+        
+        /* Suíça */
+        .switzerland {
+            background-color: #FF0000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .switzerland .cross {
+            position: relative;
+            width: 60%;
+            height: 60%;
+        }
+        
+        .switzerland .cross::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 30%;
+            background-color: #FFFFFF;
+            top: 35%;
+        }
+        
+        .switzerland .cross::after {
+            content: "";
+            position: absolute;
+            width: 30%;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 35%;
+        }
+        
+        /* Singapura */
+        .singapore {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .singapore div {
+            flex: 1;
+        }
+        
+        .singapore .red {
+            background-color: #ED2939;
+        }
+        
+        .singapore .white {
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+        }
+        
+        .singapore .moon {
+            width: 20%;
+            height: 60%;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            margin-left: 20px;
+        }
+        
+        .singapore .stars {
+            display: flex;
+            margin-left: 10px;
+        }
+        
+        .singapore .star {
+            width: 15px;
+            height: 15px;
+            background-color: #FFFFFF;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 5px;
+        }
+        
+        /* Irlanda */
+        .ireland {
+            display: flex;
+        }
+        
+        .ireland div {
+            flex: 1;
+        }
+        
+        .ireland .green {
+            background-color: #169B62;
+        }
+        
+        .ireland .white {
+            background-color: #FFFFFF;
+        }
+        
+        .ireland .orange {
+            background-color: #FF883E;
+        }
+        
+        /* Cuba */
+        .cuba {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cuba div {
+            flex: 1;
+            background-color: #002590;
+        }
+        
+        .cuba div:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+        
+        .cuba .red-triangle {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            clip-path: polygon(0 0, 0 100%, 100% 50%);
+            background-color: #CB1515;
+        }
+        
+        .cuba .star {
+            position: absolute;
+            width: 15%;
+            height: 15%;
+            background-color: #FFFFFF;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            top: 42.5%;
+            left: 17.5%;
+        }
+        
+        /* Jamaica */
+        .jamaica {
+            background-color: #000000;
+            position: relative;
+        }
+        
+        .jamaica .cross-yellow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .jamaica .cross-yellow::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #FED100;
+            transform: rotate(35deg);
+            top: 80px;
+        }
+        
+        .jamaica .cross-yellow::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #FED100;
+            transform: rotate(-35deg);
+            top: 80px;
+        }
+        
+        .jamaica .triangles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .jamaica .triangle-1 {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background-color: #009B3A;
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+        }
+        
+        .jamaica .triangle-2 {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background-color: #009B3A;
+            clip-path: polygon(100% 100%, 0 100%, 100% 0);
+            bottom: 0;
+            right: 0;
+        }
+        
+        /* Israel */
+        .israel {
+            background-color: #FFFFFF;
+            position: relative;
+        }
+        
+        .israel::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: #0038B8;
+            top: 30px;
+        }
+        
+        .israel::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: #0038B8;
+            bottom: 30px;
+        }
+        
+        .israel .placeholder-star {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #555;
+        }
+        
+        /* Argentina */
+        .argentina {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .argentina div {
+            flex: 1;
+        }
+        
+        .argentina .sky-blue {
+            background-color: #75AADB;
+        }
+        
+        .argentina .white {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .argentina .sky-blue-bottom {
+            background-color: #75AADB;
+        }
+        
+        .argentina .sun-placeholder {
+            width: 60px;
+            height: 60px;
+            background-color: #FCBF49;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bandeiras Adicionais usando CSS Flexbox</h1>
+    
+    <div class="flags-container">
+        <!-- Brasil -->
+        <div class="flag-box">
+            <div class="flag brazil">
+                <div class="diamond"></div>
+                <div class="circle"></div>
+                <div class="placeholder-text">[Ordem e Progresso]</div>
+            </div>
+            <div class="flag-name">Brasil</div>
+        </div>
+        
+        <!-- Argentina -->
+        <div class="flag-box">
+            <div class="flag argentina">
+                <div class="sky-blue"></div>
+                <div class="white">
+                    <div class="sun-placeholder"></div>
+                </div>
+                <div class="sky-blue-bottom"></div>
+            </div>
+            <div class="flag-name">Argentina</div>
+        </div>
+        
+        <!-- Japão -->
+        <div class="flag-box">
+            <div class="flag japan">
+                <div class="sun"></div>
+            </div>
+            <div class="flag-name">Japão</div>
+        </div>
+        
+        <!-- China -->
+        <div class="flag-box">
+            <div class="flag china">
+                <div class="star-big"></div>
+                <div class="star-small-1"></div>
+                <div class="star-small-2"></div>
+                <div class="star-small-3"></div>
+                <div class="star-small-4"></div>
+            </div>
+            <div class="flag-name">China</div>
+        </div>
+        
+        <!-- Índia -->
+        <div class="flag-box">
+            <div class="flag india">
+                <div class="saffron"></div>
+                <div class="white">
+                    <div class="wheel"></div>
+                </div>
+                <div class="green"></div>
+            </div>
+            <div class="flag-name">Índia</div>
+        </div>
+        
+        <!-- Austrália -->
+        <div class="flag-box">
+            <div class="flag australia">
+                <div class="uk-flag"></div>
+                <div class="star-large"></div>
+                <div class="star-small-1"></div>
+            </div>
+            <div class="flag-name">Austrália</div>
+        </div>
+        
+        <!-- África do Sul -->
+        <div class="flag-box">
+            <div class="flag south-africa">
+                <div class="red"></div>
+                <div class="blue"></div>
+                <div class="white-bars">
+                    <div class="white-top"></div>
+                </div>
+                <div class="green-triangle"></div>
+                <div class="yellow-triangle"></div>
+                <div class="black-triangle"></div>
+            </div>
+            <div class="flag-name">África do Sul</div>
+        </div>
+        
+        <!-- Rússia -->
+        <div class="flag-box">
+            <div class="flag russia">
+                <div class="white"></div>
+                <div class="blue"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Rússia</div>
+        </div>
+        
+        <!-- México -->
+        <div class="flag-box">
+            <div class="flag mexico">
+                <div class="green"></div>
+                <div class="white">
+                    <div class="placeholder-icon">[Brasão]</div>
+                </div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">México</div>
+        </div>
+        
+        <!-- Egito -->
+        <div class="flag-box">
+            <div class="flag egypt">
+                <div class="red"></div>
+                <div class="white">
+                    <div class="placeholder-icon">[Brasão]</div>
+                </div>
+                <div class="black"></div>
+            </div>
+            <div class="flag-name">Egito</div>
+        </div>
+        
+        <!-- Arábia Saudita -->
+        <div class="flag-box">
+            <div class="flag saudi-arabia">
+                <div class="text">[Texto em Árabe e Espada]</div>
+            </div>
+            <div class="flag-name">Arábia Saudita</div>
+        </div>
+        
+        <!-- Coréia do Sul -->
+        <div class="flag-box">
+            <div class="flag south-korea">
+                <div class="yin-yang"></div>
+                <div class="trigram-1"></div>
+                <div class="trigram-2"></div>
+            </div>
+            <div class="flag-name">Coréia do Sul</div>
+        </div>
+        
+        <!-- Colômbia -->
+        <div class="flag-box">
+            <div class="flag colombia">
+                <div class="yellow"></div>
+                <div class="blue"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Colômbia</div>
+        </div>
+        
+        <!-- Nova Zelândia -->
+        <div class="flag-box">
+            <div class="flag new-zealand">
+                <div class="uk-flag"></div>
+                <div class="star star-1"></div>
+                <div class="star star-2"></div>
+                <div class="star star-3"></div>
+                <div class="star star-4"></div>
+            </div>
+            <div class="flag-name">Nova Zelândia</div>
+        </div>
+        
+        <!-- Indonésia -->
+        <div class="flag-box">
+            <div class="flag indonesia">
+                <div class="red"></div>
+                <div class="white"></div>
+            </div>
+            <div class="flag-name">Indonésia</div>
+        </div>
+        
+        <!-- Suíça -->
+        <div class="flag-box">
+            <div class="flag switzerland">
+                <div class="cross"></div>
+            </div>
+            <div class="flag-name">Suíça</div>
+        </div>
+        
+        <!-- Singapura -->
+        <div class="flag-box">
+            <div class="flag singapore">
+                <div class="red"></div>
+                <div class="white">
+                    <div class="moon"></div>
+                    <div class="stars">
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                        <div class="star"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flag-name">Singapura</div>
+        </div>
+        
+        <!-- Irlanda -->
+        <div class="flag-box">
+            <div class="flag ireland">
+                <div class="green"></div>
+                <div class="white"></div>
+                <div class="orange"></div>
+            </div>
+            <div class="flag-name">Irlanda</div>
+        </div>
+        
+        <!-- Cuba -->
+        <div class="flag-box">
+            <div class="flag cuba">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div class="red-triangle"></div>
+                <div class="star"></div>
+            </div>
+            <div class="flag-name">Cuba</div>
+        </div>
+        
+        <!-- Jamaica -->
+        <div class="flag-box">
+            <div class="flag jamaica">
+                <div class="triangles">
+                    <div class="triangle-

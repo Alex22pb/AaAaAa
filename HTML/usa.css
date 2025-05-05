@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background: #eee;
+}
+
+.flag {
+    width: 380px;
+    height: 200px;
+    border: 2px solid black;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.stripes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.stripe {
+    height: calc(100% / 13);
+    width: 100%;
+}
+
+.red {
+    background-color: red;
+}
+
+.white {
+    background-color: white;
+}
+
+.union {
+    background-color: navy;
+    width: 40%;
+    height: 53.85%; /* 7 listras de altura */
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.stars {
+    text-align: center;
+    line-height: 1.2;
+    font-family: monospace;
+}

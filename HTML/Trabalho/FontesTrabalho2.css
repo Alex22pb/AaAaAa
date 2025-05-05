@@ -1,0 +1,51 @@
+header,h1{
+    font-size: 25px;
+    color: black;
+    text-align: center;
+}
+
+h2{
+    font-size: 30px;
+    text-align: center;
+}
+
+h3{
+    font-size: 20px;
+}
+
+.legendaImagem1{
+    font-size: 13px;
+    text-align: left;
+}
+
+
+.legendaImagem2{
+    font-size: 11px;
+    text-align: left;
+    color: grey;
+}
+
+.imagem{
+    width: 70%;
+    margin: auto;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+a{
+    color: darkcyan;
+}
+
+p{
+    width: 70%;
+    font-size: 15px;
+    text-align: left;
+}
+
+.imagem2{
+    width: 60%;
+    margin: auto;
+}

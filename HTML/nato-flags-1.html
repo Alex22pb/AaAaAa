@@ -1,0 +1,429 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bandeiras da OTAN com CSS e Flexbox</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .flags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .flag {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      border: 1px solid #000;
+      overflow: hidden;
+    }
+
+    .flag-label {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    /* Bandeira da França */
+    .france {
+      display: flex;
+      flex-direction: row;
+    }
+    .france .stripe {
+      flex: 1;
+    }
+    .france .blue { background-color: #0055A4; }
+    .france .white { background-color: white; }
+    .france .red { background-color: #EF4135; }
+
+    /* Bandeira do Canadá */
+    .canada {
+      display: flex;
+      flex-direction: row;
+    }
+    .canada .stripe {
+      flex: 1;
+    }
+    .canada .red { background-color: #FF0000; }
+    .canada .white { 
+      background-color: white; 
+      position: relative; 
+      flex: 2; 
+    }
+    .canada .symbol {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: auto;
+    }
+
+    /* Bandeira dos Estados Unidos */
+    .usa .stripes {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .usa .stripe {
+      flex: 1;
+    }
+    .usa .red { background-color: #B22234; }
+    .usa .white { background-color: white; }
+    .usa .canton {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120px;
+      height: 108px;
+      background-color: #3C3B6E;
+    }
+    .usa .symbol {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Esqueleto para outras bandeiras */
+    .horizontal-stripes {
+      display: flex;
+      flex-direction: column;
+    }
+    .vertical-stripes {
+      display: flex;
+      flex-direction: row;
+    }
+    .stripe {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="flags-container">
+    <!-- Albânia -->
+    <div class="flag albania" style="background-color: #E41B23;">
+      <!-- Adicionar imagem da águia negra -->
+    </div>
+    <div class="flag-label">Albânia</div>
+
+    <!-- Alemanha -->
+    <div class="flag germany horizontal-stripes">
+      <div class="stripe" style="background-color: #000000;"></div>
+      <div class="stripe" style="background-color: #DD0000;"></div>
+      <div class="stripe" style="background-color: #FFCE00;"></div>
+    </div>
+    <div class="flag-label">Alemanha</div>
+
+    <!-- Bélgica -->
+    <div class="flag belgium vertical-stripes">
+      <div class="stripe" style="background-color: #000000;"></div>
+      <div class="stripe" style="background-color: #FFC107;"></div>
+      <div class="stripe" style="background-color: #FF0000;"></div>
+    </div>
+    <div class="flag-label">Bélgica</div>
+
+    <!-- Bulgária -->
+    <div class="flag bulgaria horizontal-stripes">
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #00966E;"></div>
+      <div class="stripe" style="background-color: #D62612;"></div>
+    </div>
+    <div class="flag-label">Bulgária</div>
+
+    <!-- Canadá -->
+    <div class="flag canada">
+      <div class="stripe red"></div>
+      <div class="stripe white">
+        <img src="maple-leaf.png" alt="Folha de Bordo" class="symbol">
+      </div>
+      <div class="stripe red"></div>
+    </div>
+    <div class="flag-label">Canadá</div>
+
+    <!-- Croácia -->
+    <div class="flag croatia horizontal-stripes">
+      <div class="stripe" style="background-color: #FF0000;"></div>
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #171796;"></div>
+      <!-- Adicionar imagem do escudo -->
+    </div>
+    <div class="flag-label">Croácia</div>
+
+    <!-- Dinamarca -->
+    <div class="flag denmark" style="background-color: #C8102E;">
+      <div style="position: absolute; top: 0; left: 80px; width: 40px; height: 200px; background-color: white;"></div>
+      <div style="position: absolute; top: 80px; left: 0; width: 300px; height: 40px; background-color: white;"></div>
+    </div>
+    <div class="flag-label">Dinamarca</div>
+
+    <!-- Eslováquia -->
+    <div class="flag slovakia vertical-stripes">
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #0B4EA2;"></div>
+      <div class="stripe" style="background-color: #EE1C25;"></div>
+      <!-- Adicionar imagem do escudo -->
+    </div>
+    <div class="flag-label">Eslováquia</div>
+
+    <!-- Eslovênia -->
+    <div class="flag slovenia horizontal-stripes">
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #0055A4;"></div>
+      <div class="stripe" style="background-color: #FF0000;"></div>
+      <!-- Adicionar imagem do escudo -->
+    </div>
+    <div class="flag-label">Eslovênia</div>
+
+    <!-- Espanha -->
+    <div class="flag spain horizontal-stripes">
+      <div class="stripe" style="background-color: #AA151B; flex: 1;"></div>
+      <div class="stripe" style="background-color: #F1BF00; flex: 2;"></div>
+      <div class="stripe" style="background-color: #AA151B; flex: 1;"></div>
+      <!-- Adicionar imagem do escudo -->
+    </div>
+    <div class="flag-label">Espanha</div>
+
+    <!-- Estados Unidos -->
+    <div class="flag usa">
+      <div class="stripes">
+        <div class="stripe red"></div>
+        <div class="stripe white"></div>
+        <div class="stripe red"></div>
+        <div class="stripe white"></div>
+        <div class="stripe red"></div>
+        <div class="stripe white"></div>
+        <div class="stripe red"></div>
+        <div class="stripe white"></div>
+        <div class="stripe red"></div>
+        <div class="stripe white"></div>
+        <div class="stripe red"></div>
+        <div class="stripe white"></div>
+        <div class="stripe red"></div>
+      </div>
+      <div class="canton">
+        <img src="stars.png" alt="Estrelas" class="symbol">
+      </div>
+    </div>
+    <div class="flag-label">Estados Unidos</div>
+
+    <!-- Estônia -->
+    <div class="flag estonia horizontal-stripes">
+      <div class="stripe" style="background-color: #0072CE;"></div>
+      <div class="stripe" style="background-color: black;"></div>
+      <div class="stripe" style="background-color: white;"></div>
+    </div>
+    <div class="flag-label">Estônia</div>
+
+    <!-- Finlândia -->
+    <div class="flag finland" style="background-color: white;">
+      <div style="position: absolute; top: 0; left: 80px; width: 40px; height: 200px; background-color: #003087;"></div>
+      <div style="position: absolute; top: 80px; left: 0; width: 300px; height: 40px; background-color: #003087;"></div>
+    </div>
+    <div class="flag-label">Finlândia</div>
+
+    <!-- França -->
+    <div class="flag france">
+      <div class="stripe blue"></div>
+      <div class="stripe white"></div>
+      <div class="stripe red"></div>
+    </div>
+    <div class="flag-label">França</div>
+
+    <!-- Grécia -->
+    <div class="flag greece">
+      <div class="stripes" style="display: flex; flex-direction: column; height: 100%;">
+        <div class="stripe" style="background-color: #0D5EAF;"></div>
+        <div class="stripe" style="background-color: white;"></div>
+        <div class="stripe" style="background-color: #0D5EAF;"></div>
+        <div class="stripe" style="background-color: white;"></div>
+        <div class="stripe" style="background-color: #0D5EAF;"></div>
+        <div class="stripe" style="background-color: white;"></div>
+        <div class="stripe" style="background-color: #0D5EAF;"></div>
+        <div class="stripe" style="background-color: white;"></div>
+        <div class="stripe" style="background-color: #0D5EAF;"></div>
+      </div>
+      <div style="position: absolute; top: 0; left: 0; width: 100px; height: 100px; background-color: #0D5EAF;">
+        <div style="position: absolute; top: 0; left: 40px; width: 20px; height: 100px; background-color: white;"></div>
+        <div style="position: absolute; top: 40px; left: 0; width: 100px; height: 20px; background-color: white;"></div>
+      </div>
+    </div>
+    <div class="flag-label">Grécia</div>
+
+    <!-- Hungria -->
+    <div class="flag hungary horizontal-stripes">
+      <div class="stripe" style="background-color: #CE1126;"></div>
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #477050;"></div>
+    </div>
+    <div class="flag-label">Hungria</div>
+
+    <!-- Islândia -->
+    <div class="flag iceland" style="background-color: #02529F;">
+      <div style="position: absolute; top: 0; left: 80px; width: 40px; height: 200px; background-color: white;"></div>
+      <div style="position: absolute; top: 80px; left: 0; width: 300px; height: 40px; background-color: white;"></div>
+      <div style="position: absolute; top: 0; left: 90px; width: 20px; height: 200px; background-color: #D72828;"></div>
+      <div style="position: absolute; top: 90px; left: 0; width: 300px; height: 20px; background-color: #D72828;"></div>
+    </div>
+    <div class="flag-label">Islândia</div>
+
+    <!-- Itália -->
+    <div class="flag italy vertical-stripes">
+      <div class="stripe" style="background-color: #009246;"></div>
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #CE2B37;"></div>
+    </div>
+    <div class="flag-label">Itália</div>
+
+    <!-- Letônia -->
+    <div class="flag latvia horizontal-stripes">
+      <div class="stripe" style="background-color: #9E1B34; flex: 2;"></div>
+      <div class="stripe" style="background-color: white; flex: 1;"></div>
+      <div class="stripe" style="background-color: #9E1B34; flex: 2;"></div>
+    </div>
+    <div class="flag-label">Letônia</div>
+
+    <!-- Lituânia -->
+    <div class="flag lithuania horizontal-stripes">
+      <div class="stripe" style="background-color: #FFB915;"></div>
+      <div class="stripe" style="background-color: #006A44;"></div>
+      <div class="stripe" style="background-color: #C1272D;"></div>
+    </div>
+    <div class="flag-label">Lituânia</div>
+
+    <!-- Luxemburgo -->
+    <div class="flag luxembourg horizontal-stripes">
+      <div class="stripe" style="background-color: #ED2939;"></div>
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #00A1DE;"></div>
+    </div>
+    <div class="flag-label">Luxemburgo</div>
+
+    <!-- Macedônia do Norte -->
+    <div class="flag north-macedonia" style="background-color: #D81E05;">
+      <!-- Adicionar imagem do sol -->
+    </div>
+    <div class="flag-label">Macedônia do Norte</div>
+
+    <!-- Montenegro -->
+    <div class="flag montenegro" style="background-color: #C8102E;">
+      <!-- Adicionar imagem do escudo -->
+    </div>
+    <div class="flag-label">Montenegro</div>
+
+    <!-- Noruega -->
+    <div class="flag norway" style="background-color: #BA0C2F;">
+      <div style="position: absolute; top: 0; left: 80px; width: 40px; height: 200px; background-color: white;"></div>
+      <div style="position: absolute; top: 80px; left: 0; width: 300px; height: 40px; background-color: white;"></div>
+      <div style="position: absolute; top: 0; left: 90px; width: 20px; height: 200px; background-color: #00205B;"></div>
+      <div style="position: absolute; top: 90px; left: 0; width: 300px; height: 20px; background-color: #00205B;"></div>
+    </div>
+    <div class="flag-label">Noruega</div>
+
+    <!-- Países Baixos -->
+    <div class="flag netherlands horizontal-stripes">
+      <div class="stripe" style="background-color: #AE1C28;"></div>
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #21468B;"></div>
+    </div>
+    <div class="flag-label">Países Baixos</div>
+
+    <!-- Polônia -->
+    <div class="flag poland horizontal-stripes">
+      <div class="stripe" style="background-color: white;"></div>
+      <div class="stripe" style="background-color: #DC143C;"></div>
+    </div>
+    <div class="flag-label">Polônia</div>
+
+    <!-- Portugal -->
+    <div class="flag portugal vertical-stripes">
+      <div class="stripe" style="background-color: #006600; flex: 2;"></div>
+      <div class="stripe" style="background-color: #FF0000; flex: 3;"></div>
+      <!-- Adicionar imagem do escudo -->
+    </div>
+    <div class="flag-label">Portugal</div>
+
+    <!-- Reino Unido -->
+    <div class="flag uk" style="background-color: #012169;">
+      <!-- Adicionar imagem da Union Jack simplificada -->
+    </div>
+    <div class="flag-label">Reino Unido</div>
+
+    <!-- República Tcheca -->
+    <div class="flag czech-republic">
+      <div class="horizontal-stripes" style="height: 100%;">
+        <div class="stripe" style="background-color: white; flex: 1;"></div>
+        <div class="stripe" style="background-color: #D7141A; flex: 1;"></div>
+      </div>
+      <div style="position: absolute; top: 0; left: 0; width: 150px; height: 200px; background-color: #11457E; clip-path: polygon(0 0, 100% 50%, 0 100%);"></div>
+    </div>
+    <div class="flag-label">República Tcheca</div>
+
+    <!-- Romênia -->
+    <div class="flag romania vertical-stripes">
+      <div class="stripe" style="background-color: #002B7F;"></div>
+      <div class="stripe" style="background-color: #FCD116;"></div>
+      <div class="stripe" style="background-color: #CE1126;"></div>
+    </div>
+    <div class="flag-label">Romênia</div>
+
+    <!-- Turquia -->
+    <div class="flag turkey" style="background-color: #E30A17;">
+      <!-- Adicionar imagem da lua e estrela -->
+    </div>
+    <div class="flag-label">Turquia</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+.flag-suica {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    position: relative;
+}
+
+.cross-horizontal {
+    position: absolute;
+    top: 45%;
+    width: 100%;
+    height: 10%;
+    background-color: white;
+}
+
+.cross-vertical {
+    position: absolute;
+    left: 45%;
+    width: 10%;
+    height: 100%;
+    background-color: white;
+}

@@ -1,0 +1,35 @@
+.flag-chile {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.top {
+    display: flex;
+    flex: 1;
+}
+
+.blue {
+    width: 100px;
+    background-color: blue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star {
+    font-size: 24px;
+}
+
+.white {
+    flex: 1;
+    background-color: white;
+}
+
+.red {
+    flex: 1;
+    background-color: red;
+}

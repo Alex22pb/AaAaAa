@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandeiras dos Países da OTAN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .flags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .flag-box {
+            width: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .flag-name {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .flag {
+            width: 100%;
+            height: 200px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            position: relative;
+        }
+        
+        /* Bandeiras horizontais */
+        .horizontal {
+            flex-direction: column;
+        }
+        
+        /* Bandeiras verticais */
+        .vertical {
+            flex-direction: row;
+        }
+        
+        /* Bandeiras com elementos centrais */
+        .centered {
+            position: relative;
+        }
+        
+        .placeholder-icon {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        /* Estados Unidos */
+        .usa .blue-field {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40%;
+            height: 54%;
+            background-color: #002868;
+        }
+        
+        .usa .stripes {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .usa .stripe {
+            flex: 1;
+            background-color: #fff;
+        }
+        
+        .usa .stripe:nth-child(odd) {
+            background-color: #BF0A30;
+        }
+        
+        /* Reino Unido */
+        .uk {
+            background-color: #00247D;
+            position: relative;
+        }
+        
+        .uk .diagonal-red {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .uk .diagonal-red::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 40px;
+            background-color: #CF142B;
+            transform: rotate(45deg);
+            top: 80px;
+            left: -50%;
+        }
+        
+        .uk .diagonal-red::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 40px;
+            background-color: #CF142B;
+            transform: rotate(-45deg);
+            top: 80px;
+            left: -50%;
+        }
+        
+        .uk .cross-red {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .uk .cross-red::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #CF142B;
+            top: 80px;
+        }
+        
+        .uk .cross-red::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background-color: #CF142B;
+            left: 130px;
+        }
+        
+        .uk .cross-white {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .uk .cross-white::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            background-color: #fff;
+            top: 70px;
+        }
+        
+        .uk .cross-white::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 100%;
+            background-color: #fff;
+            left: 120px;
+        }
+        
+        /* França */
+        .france {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .france div {
+            flex: 1;
+        }
+        
+        .france .blue {
+            background-color: #002395;
+        }
+        
+        .france .white {
+            background-color: #FFFFFF;
+        }
+        
+        .france .red {
+            background-color: #ED2939;
+        }
+        
+        /* Alemanha */
+        .germany {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .germany div {
+            flex: 1;
+        }
+        
+        .germany .black {
+            background-color: #000000;
+        }
+        
+        .germany .red {
+            background-color: #DD0000;
+        }
+        
+        .germany .gold {
+            background-color: #FFCE00;
+        }
+        
+        /* Itália */
+        .italy {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .italy div {
+            flex: 1;
+        }
+        
+        .italy .green {
+            background-color: #009246;
+        }
+        
+        .italy .white {
+            background-color: #FFFFFF;
+        }
+        
+        .italy .red {
+            background-color: #CE2B37;
+        }
+        
+        /* Canadá */
+        .canada {
+            display: flex;
+        }
+        
+        .canada .red {
+            flex: 1;
+            background-color: #FF0000;
+        }
+        
+        .canada .white {
+            flex: 2;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Turquia */
+        .turkey {
+            background-color: #E30A17;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .turkey .moon-star {
+            width: 60%;
+            height: 60%;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Espanha */
+        .spain {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .spain .red {
+            flex: 1;
+            background-color: #AA151B;
+        }
+        
+        .spain .yellow {
+            flex: 2;
+            background-color: #F1BF00;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
+        /* Portugal */
+        .portugal {
+            display: flex;
+        }
+        
+        .portugal .green {
+            flex: 2;
+            background-color: #006600;
+        }
+        
+        .portugal .red {
+            flex: 3;
+            background-color: #FF0000;
+        }
+        
+        /* Bélgica */
+        .belgium {
+            display: flex;
+        }
+        
+        .belgium div {
+            flex: 1;
+        }
+        
+        .belgium .black {
+            background-color: #000000;
+        }
+        
+        .belgium .yellow {
+            background-color: #FAE042;
+        }
+        
+        .belgium .red {
+            background-color: #ED2939;
+        }
+        
+        /* Holanda/Países Baixos */
+        .netherlands {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .netherlands div {
+            flex: 1;
+        }
+        
+        .netherlands .red {
+            background-color: #AE1C28;
+        }
+        
+        .netherlands .white {
+            background-color: #FFFFFF;
+        }
+        
+        .netherlands .blue {
+            background-color: #21468B;
+        }
+        
+        /* Dinamarca */
+        .denmark {
+            background-color: #C8102E;
+            position: relative;
+        }
+        
+        .denmark::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: #FFFFFF;
+            top: 85px;
+        }
+        
+        .denmark::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 85px;
+        }
+        
+        /* Noruega */
+        .norway {
+            background-color: #EF2B2D;
+            position: relative;
+        }
+        
+        .norway::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #FFFFFF;
+            top: 80px;
+        }
+        
+        .norway::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 85px;
+        }
+        
+        .norway .blue-cross {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .norway .blue-cross::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: #002868;
+            top: 90px;
+        }
+        
+        .norway .blue-cross::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: #002868;
+            left: 95px;
+        }
+        
+        /* Grécia */
+        .greece {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .greece .top {
+            flex: 5;
+            display: flex;
+        }
+        
+        .greece .canton {
+            flex: 4;
+            background-color: #0D5EAF;
+            position: relative;
+        }
+        
+        .greece .canton::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: #FFFFFF;
+            top: 40px;
+        }
+        
+        .greece .canton::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 40px;
+        }
+        
+        .greece .stripes-top {
+            flex: 6;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .greece .stripes-top div, .greece .stripes-bottom div {
+            flex: 1;
+        }
+        
+        .greece .stripes-top div:nth-child(odd), .greece .stripes-bottom div:nth-child(odd) {
+            background-color: #0D5EAF;
+        }
+        
+        .greece .stripes-top div:nth-child(even), .greece .stripes-bottom div:nth-child(even) {
+            background-color: #FFFFFF;
+        }
+        
+        .greece .stripes-bottom {
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Polônia */
+        .poland {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .poland div {
+            flex: 1;
+        }
+        
+        .poland .white {
+            background-color: #FFFFFF;
+        }
+        
+        .poland .red {
+            background-color: #DC143C;
+        }
+        
+        /* República Tcheca */
+        .czech {
+            background-color: #FFFFFF;
+            position: relative;
+        }
+        
+        .czech::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background-color: #D7141A;
+            bottom: 0;
+        }
+        
+        .czech::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            background-color: #11457E;
+            clip-path: polygon(0 0, 0% 100%, 100% 50%);
+        }
+        
+        /* Hungria */
+        .hungary {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hungary div {
+            flex: 1;
+        }
+        
+        .hungary .red {
+            background-color: #CE2939;
+        }
+        
+        .hungary .white {
+            background-color: #FFFFFF;
+        }
+        
+        .hungary .green {
+            background-color: #477050;
+        }
+        
+        /* Eslováquia */
+        .slovakia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slovakia div {
+            flex: 1;
+        }
+        
+        .slovakia .white {
+            background-color: #FFFFFF;
+        }
+        
+        .slovakia .blue {
+            background-color: #0B4EA2;
+        }
+        
+        .slovakia .red {
+            background-color: #EE1C25;
+        }
+        
+        /* Eslovênia */
+        .slovenia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .slovenia .white {
+            flex: 1;
+            background-color: #FFFFFF;
+        }
+        
+        .slovenia .blue {
+            flex: 1;
+            background-color: #005CE6;
+        }
+        
+        .slovenia .red {
+            flex: 1;
+            background-color: #ED1C24;
+        }
+        
+        /* Letônia */
+        .latvia {
+            background-color: #9E3039;
+            position: relative;
+        }
+        
+        .latvia::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #FFFFFF;
+            top: 80px;
+        }
+        
+        /* Lituânia */
+        .lithuania {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lithuania div {
+            flex: 1;
+        }
+        
+        .lithuania .yellow {
+            background-color: #FDB913;
+        }
+        
+        .lithuania .green {
+            background-color: #006A44;
+        }
+        
+        .lithuania .red {
+            background-color: #C1272D;
+        }
+        
+        /* Estônia */
+        .estonia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .estonia div {
+            flex: 1;
+        }
+        
+        .estonia .blue {
+            background-color: #0072CE;
+        }
+        
+        .estonia .black {
+            background-color: #000000;
+        }
+        
+        .estonia .white {
+            background-color: #FFFFFF;
+        }
+        
+        /* Bulgária */
+        .bulgaria {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .bulgaria div {
+            flex: 1;
+        }
+        
+        .bulgaria .white {
+            background-color: #FFFFFF;
+        }
+        
+        .bulgaria .green {
+            background-color: #00966E;
+        }
+        
+        .bulgaria .red {
+            background-color: #D62612;
+        }
+        
+        /* Romênia */
+        .romania {
+            display: flex;
+        }
+        
+        .romania div {
+            flex: 1;
+        }
+        
+        .romania .blue {
+            background-color: #002B7F;
+        }
+        
+        .romania .yellow {
+            background-color: #FCD116;
+        }
+        
+        .romania .red {
+            background-color: #CE1126;
+        }
+        
+        /* Croácia */
+        .croatia {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .croatia div {
+            flex: 1;
+        }
+        
+        .croatia .red {
+            background-color: #FF0000;
+        }
+        
+        .croatia .white {
+            background-color: #FFFFFF;
+            position: relative;
+        }
+        
+        .croatia .blue {
+            background-color: #171796;
+        }
+        
+        /* Albânia */
+        .albania {
+            background-color: #E41E20;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .albania .eagle-placeholder {
+            width: 60%;
+            height: 60%;
+            background-color: #000;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        /* Islândia */
+        .iceland {
+            background-color: #02529C;
+            position: relative;
+        }
+        
+        .iceland::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            background-color: #FFFFFF;
+            top: 80px;
+        }
+        
+        .iceland::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 100%;
+            background-color: #FFFFFF;
+            left: 85px;
+        }
+        
+        .iceland .red-cross {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .iceland .red-cross::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: #DC1E35;
+            top: 90px;
+        }
+        
+        .iceland .red-cross::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 100%;
+            background-color: #DC1E35;
+            left: 95px;
+        }
+        
+        /* Macedônia do Norte */
+        .north-macedonia {
+            background-color: #FF0000;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .north-macedonia .yellow-sun {
+            width: 40%;
+            height: 40%;
+            background-color: #FFE600;
+            border-radius: 50%;
+        }
+        
+        /* Montenegro */
+        .montenegro {
+            background-color: #C40308;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .montenegro .coat-arms-placeholder {
+            width: 60%;
+            height: 70%;
+            border: 2px solid #FFDE00;
+        }
+        
+        /* Finlândia */
+        .finland {
+            background-color: #FFFFFF;
+            position: relative;
+        }
+        
+        .finland::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: #002F6C;
+            top: 85px;
+        }
+        
+        .finland::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background-color: #002F6C;
+            left: 85px;
+        }
+        
+        /* Suécia */
+        .sweden {
+            background-color: #006AA7;
+            position: relative;
+        }
+        
+        .sweden::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            background-color: #FECC00;
+            top: 85px;
+        }
+        
+        .sweden::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background-color: #FECC00;
+            left: 85px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bandeiras dos Países da OTAN usando CSS Flexbox</h1>
+    
+    <div class="flags-container">
+        <!-- Estados Unidos -->
+        <div class="flag-box">
+            <div class="flag usa">
+                <div class="blue-field"></div>
+                <div class="stripes">
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                    <div class="stripe"></div>
+                </div>
+                <div class="placeholder-icon" style="top: 10px; left: 10px;">
+                    [Estrelas]
+                </div>
+            </div>
+            <div class="flag-name">Estados Unidos</div>
+        </div>
+        
+        <!-- Reino Unido -->
+        <div class="flag-box">
+            <div class="flag uk">
+                <div class="cross-white"></div>
+                <div class="cross-red"></div>
+                <div class="diagonal-red"></div>
+            </div>
+            <div class="flag-name">Reino Unido</div>
+        </div>
+        
+        <!-- França -->
+        <div class="flag-box">
+            <div class="flag france">
+                <div class="blue"></div>
+                <div class="white"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">França</div>
+        </div>
+        
+        <!-- Alemanha -->
+        <div class="flag-box">
+            <div class="flag germany">
+                <div class="black"></div>
+                <div class="red"></div>
+                <div class="gold"></div>
+            </div>
+            <div class="flag-name">Alemanha</div>
+        </div>
+        
+        <!-- Itália -->
+        <div class="flag-box">
+            <div class="flag italy">
+                <div class="green"></div>
+                <div class="white"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Itália</div>
+        </div>
+        
+        <!-- Canadá -->
+        <div class="flag-box">
+            <div class="flag canada">
+                <div class="red"></div>
+                <div class="white">
+                    <div class="placeholder-icon">[Folha de Bordo]</div>
+                </div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Canadá</div>
+        </div>
+        
+        <!-- Turquia -->
+        <div class="flag-box">
+            <div class="flag turkey">
+                <div class="placeholder-icon">[Lua e Estrela]</div>
+            </div>
+            <div class="flag-name">Turquia</div>
+        </div>
+        
+        <!-- Espanha -->
+        <div class="flag-box">
+            <div class="flag spain">
+                <div class="red"></div>
+                <div class="yellow">
+                    <div class="placeholder-icon" style="margin-left: 20px;">[Brasão]</div>
+                </div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Espanha</div>
+        </div>
+        
+        <!-- Portugal -->
+        <div class="flag-box">
+            <div class="flag portugal">
+                <div class="green"></div>
+                <div class="red">
+                    <div class="placeholder-icon">[Brasão]</div>
+                </div>
+            </div>
+            <div class="flag-name">Portugal</div>
+        </div>
+        
+        <!-- Bélgica -->
+        <div class="flag-box">
+            <div class="flag belgium">
+                <div class="black"></div>
+                <div class="yellow"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Bélgica</div>
+        </div>
+        
+        <!-- Holanda/Países Baixos -->
+        <div class="flag-box">
+            <div class="flag netherlands">
+                <div class="red"></div>
+                <div class="white"></div>
+                <div class="blue"></div>
+            </div>
+            <div class="flag-name">Países Baixos</div>
+        </div>
+        
+        <!-- Dinamarca -->
+        <div class="flag-box">
+            <div class="flag denmark"></div>
+            <div class="flag-name">Dinamarca</div>
+        </div>
+        
+        <!-- Noruega -->
+        <div class="flag-box">
+            <div class="flag norway">
+                <div class="blue-cross"></div>
+            </div>
+            <div class="flag-name">Noruega</div>
+        </div>
+        
+        <!-- Grécia -->
+        <div class="flag-box">
+            <div class="flag greece">
+                <div class="top">
+                    <div class="canton"></div>
+                    <div class="stripes-top">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="stripes-bottom">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="flag-name">Grécia</div>
+        </div>
+        
+        <!-- Polônia -->
+        <div class="flag-box">
+            <div class="flag poland">
+                <div class="white"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Polônia</div>
+        </div>
+        
+        <!-- República Tcheca -->
+        <div class="flag-box">
+            <div class="flag czech"></div>
+            <div class="flag-name">República Tcheca</div>
+        </div>
+        
+        <!-- Hungria -->
+        <div class="flag-box">
+            <div class="flag hungary">
+                <div class="red"></div>
+                <div class="white"></div>
+                <div class="green"></div>
+            </div>
+            <div class="flag-name">Hungria</div>
+        </div>
+        
+        <!-- Eslováquia -->
+        <div class="flag-box">
+            <div class="flag slovakia">
+                <div class="white"></div>
+                <div class="blue"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Eslováquia</div>
+        </div>
+        
+        <!-- Eslovênia -->
+        <div class="flag-box">
+            <div class="flag slovenia">
+                <div class="white"></div>
+                <div class="blue"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Eslovênia</div>
+        </div>
+        
+        <!-- Letônia -->
+        <div class="flag-box">
+            <div class="flag latvia"></div>
+            <div class="flag-name">Letônia</div>
+        </div>
+        
+        <!-- Lituânia -->
+        <div class="flag-box">
+            <div class="flag lithuania">
+                <div class="yellow"></div>
+                <div class="green"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Lituânia</div>
+        </div>
+        
+        <!-- Estônia -->
+        <div class="flag-box">
+            <div class="flag estonia">
+                <div class="blue"></div>
+                <div class="black"></div>
+                <div class="white"></div>
+            </div>
+            <div class="flag-name">Estônia</div>
+        </div>
+        
+        <!-- Bulgária -->
+        <div class="flag-box">
+            <div class="flag bulgaria">
+                <div class="white"></div>
+                <div class="green"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Bulgária</div>
+        </div>
+        
+        <!-- Romênia -->
+        <div class="flag-box">
+            <div class="flag romania">
+                <div class="blue"></div>
+                <div class="yellow"></div>
+                <div class="red"></div>
+            </div>
+            <div class="flag-name">Romênia</div>
+        </div>
+        
+        <!-- Croácia -->
+        <div class="flag-box">
+            <div class="flag croatia">
+                <div class="red"></div>
+                <div class="white">
+                    <div class="placeholder-icon">[Brasão]</div>
+                </div>
+                <div class="blue"></div>
+            </div>
+            <div class="flag-name">Croácia</div>
+        </div>
+        
+        <!-- Albânia -->
+        <div class="flag-box">
+            <div class="flag albania">
+                <div class="placeholder-icon">[Águia]</div>
+            </div>
+            <div class="flag-name">Albânia</div>
+        </div>
+        
+        <!-- Islândia -->
+        <div class="flag-box">
+            <div class="flag iceland">
+                <div class="red-cross"></div>
+            </div>
+            <div class="flag-name">Islândia</div>
+        </div>
+        
+        <!-- Macedônia do Norte -->
+        <div class="flag-box">
+            <div class="flag north-macedonia">
+                <div class="yellow-sun"></div>
+            </div>
+            <div class="flag-name">Macedônia do Norte</div>
+        </div>
+        
+        <!-- Montenegro -->
+        <div class="flag-box">
+            <div class="flag montenegro">
+                <div class="placeholder-icon">[Brasão]</div>
+            </div>
+            <div class="flag-name">Montenegro</div>
+        </div>
+        
+        <!--

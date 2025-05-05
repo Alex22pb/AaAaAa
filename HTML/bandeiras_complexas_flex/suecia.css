@@ -1,0 +1,22 @@
+.flag-suecia {
+    width: 300px;
+    height: 200px;
+    background-color: #006aa7;
+    position: relative;
+}
+
+.cruz-amarela-vertical {
+    position: absolute;
+    left: 30%;
+    width: 10%;
+    height: 100%;
+    background-color: #fecc00;
+}
+
+.cruz-amarela-horizontal {
+    position: absolute;
+    top: 40%;
+    height: 10%;
+    width: 100%;
+    background-color: #fecc00;
+}

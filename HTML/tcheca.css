@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background: #eee;
+  }
+  
+  .flag {
+    position: relative;
+    width: 300px;
+    height: 180px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .top {
+    background-color: white;
+    flex: 1;
+  }
+  
+  .bottom {
+    background-color: red;
+    flex: 1;
+  }
+  
+  .triangle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 90px solid transparent;
+    border-bottom: 90px solid transparent;
+    border-left: 150px solid blue;
+  }
+  
